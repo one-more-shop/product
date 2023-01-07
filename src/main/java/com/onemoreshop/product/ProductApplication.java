@@ -1,4 +1,4 @@
-package com.onemoreshot.product;
+package com.onemoreshop.product;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

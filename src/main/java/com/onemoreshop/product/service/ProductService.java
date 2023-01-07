@@ -1,11 +1,11 @@
-package com.onemoreshot.product.service;
+package com.onemoreshop.product.service;
 
 import org.springframework.stereotype.Service;
 
-import com.onemoreshot.product.dto.ProductDTO;
-import com.onemoreshot.product.mapper.ProductDtoToProductMapper;
-import com.onemoreshot.product.model.Product;
-import com.onemoreshot.product.repository.ProductRepository;
+import com.onemoreshop.product.converter.ProductDtoToProductConverter;
+import com.onemoreshop.product.dto.ProductDTO;
+import com.onemoreshop.product.model.Product;
+import com.onemoreshop.product.repository.ProductRepository;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -14,12 +14,12 @@ import reactor.core.publisher.Mono;
 public class ProductService {
 
     private ProductRepository productRepository;
-    private ProductDtoToProductMapper mapper;
+    private ProductDtoToProductConverter converter;
 
     public ProductService(final ProductRepository productRepository,
-            final ProductDtoToProductMapper mapper) {
+            final ProductDtoToProductConverter mapper) {
         this.productRepository = productRepository;
-        this.mapper = mapper;
+        this.converter = mapper;
     }
 
     public Flux<Product> findAll() {
@@ -31,13 +31,13 @@ public class ProductService {
     }
 
     public Mono<Product> create(final ProductDTO productDTO) {
-        Product product = mapper.convert(productDTO);
+        Product product = converter.convert(productDTO);
 
         return this.productRepository.save(product);
     }
 
     public Mono<Product> update(final String id, final ProductDTO productDTO) {
-        Product product = mapper.convert(productDTO);
+        Product product = converter.convert(productDTO);
 
         return this.productRepository.findById(id)
                 .flatMap(p -> {

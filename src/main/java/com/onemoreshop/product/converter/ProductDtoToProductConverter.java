@@ -1,12 +1,13 @@
-package com.onemoreshot.product.mapper;
+package com.onemoreshop.product.converter;
 
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import com.onemoreshot.product.dto.ProductDTO;
-import com.onemoreshot.product.model.Product;
+import com.onemoreshop.product.dto.ProductDTO;
+import com.onemoreshop.product.model.Product;
 
 @Component
-public class ProductDtoToProductMapper {
+public class ProductDtoToProductConverter implements Converter<ProductDTO, Product> {
 
     public Product convert(ProductDTO productDTO) {
         Product product = Product.builder()

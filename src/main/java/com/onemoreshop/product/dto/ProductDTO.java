@@ -1,4 +1,4 @@
-package com.onemoreshot.product.dto;
+package com.onemoreshop.product.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
